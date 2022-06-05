@@ -1,0 +1,7 @@
+.list{
+    @apply cursor-pointer mr-6;
+}
+
+.menuItem{
+    @apply cursor-pointer mr-12 font-bold text-lg hover:text-green;
+}

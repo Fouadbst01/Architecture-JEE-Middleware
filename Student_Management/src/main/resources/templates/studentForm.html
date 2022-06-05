@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${edit} ? 'Edit student':'Add student'"></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-screen h-screen flex items-center bg-gray-200">
+        <div class="w-full mx-auto max-w-2xl">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="post" th:action="@{/students/save/(page=${curentPage},keyword=${keyword})}"  th:object="${student}">
+              <h1 th:text="${edit} ? 'Edit student':'Add student'" class="w-full mb-3 text-xl font-bold text-center text-blue-500"></h1>
+                <div th:if="${edit}" class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id">
+                        ID
+                    </label>
+                    <input type="hidden" id="id" th:field="*{id}">
+                    <p  class="h-12 flex my-auto border shadow-md hover:shadow-blue-200 appearance-none rounded w-full px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-outline">
+                        <span th:utext="*{id}" class="my-auto"></span>
+                    </p>
+                </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
+                      First name
+                  </label>
+                  <input th:classappend="${#fields.hasErrors('firstName')?'border-red-500 ':''}" class="h-12 border shadow-md hover:shadow-blue-200 appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName" placeholder="First name" type="text" th:field="*{firstName}">
+                  <p class="text-red-500"th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="lastName">
+                      Last name
+                  </label>
+                  <input placeholder="Last name" th:classappend="${#fields.hasErrors('lastName')?'border-red-500 ':''}"  class="h-12 shadow-md hover:shadow-blue-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastName" type="text" th:field="*{lastName}">
+                  <p class="text-red-500"th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Email">
+                      Email
+                  </label>
+                  <input placeholder="Email" th:classappend="${#fields.hasErrors('Email')?'border-red-500 ':''}" class="h-12 shadow-md hover:shadow-blue-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Email" type="text" th:field="*{Email}">
+                  <p class="text-red-500"th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></p>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="birthDay">
+                      BirthDay
+                  </label>
+                  <input th:classappend="${#fields.hasErrors('birthDay')?'border-red-500 ':''}" class="h-12 shadow-md hover:shadow-blue-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="birthDay" type="date" th:field="*{birthDay}">
+                  <p class="text-red-500"th:if="${#fields.hasErrors('birthDay')}" th:errors="*{birthDay}"></p>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2">
+                      Gender
+                  </label>
+                  <div class="px-2 flex space-x-16">
+                      <div>
+                          <label>Male</label>
+                          <input class="mx-2" type="radio"  th:field="*{gender}" th:value="${T(com.example.student_management.entities.Gender).MALE}">
+                      </div>
+                      <div>
+                          <label>Female</label>
+                          <input class="mx-2" type="radio"  th:field="*{gender}" th:value="${T(com.example.student_management.entities.Gender).FEMALE}">
+                      </div>
+                  </div>
+                  <p class="text-red-500"th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="situation">
+                      Situation
+                  </label>
+                  <input class="mx-2" type="checkbox" id="situation" th:field="*{situation}">
+              </div>
+                <input th:value="${edit} ? 'Edit student':'Add student'"  class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   <section layout:fragment="content" class="mx-auto">
+
+       <form class="bg-white px-12 pb-12 pt-4 rounded shadow-xl" autocomplete="off" th:action="@{/users/(page=${curentPage},keyword=${keyword})}">
+           <h1 class="w-full text-xl text-center font-bold text-blue-500 mb-2">Registration</h1>
+           <div class="mb-2">
+               <label class="block text-blue-500 mb-2 font-bold ">Email</label>
+               <input class="border rounded leading-tight px-2 py-1" type="email"  placeholder="Email">
+           </div>
+           <div class="mb-2">
+               <label class="mb-2 block text-blue-500 font-bold ">Password</label>
+               <input class="border-md shadow px-2 py-1" value="" type="password" placeholder="Password" >
+           </div>
+           <div class="mb-2">
+               <label class="mb-2 block text-blue-500 font-bold ">Password Confirmation</label>
+               <input class="px-2 py-1" type="password" placeholder="confirm password">
+           </div>
+           <div class="mt-4 h-full flex">
+               <input class="w-full px-2 font-bold py-1 mx-auto text-white border bg-blue-500 rounded" type="submit" value="Register">
+           </div>
+       </form>
+   </section>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Students</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="h-screen relative min-w-min flex items-center w-full bg-gray-100 px-4">
+  <div class="h-12 w-full shadow-xl flex justify-between bg-blue-500 absolute top-0 left-0 px-8">
+    <p class="text-white my-auto font-bold">Student Mangement</p>
+    <div class="flex-1 flex justify-center" sec:authorize="hasAnyAuthority('ADMIN')">
+      <form sec:authorize="isAuthenticated()" method="get" th:action="@{/students}" class="flex flex-col w-24 ml-4 hover:border-b-4 hover:border-b-[#3F3C51]">
+        <input class="cursor-pointer grow text-[#3F3C51] font-semibold" type="submit" value="Student"/>
+      </form>
+      <form sec:authorize="isAuthenticated()" method="get" th:action="@{/users}" class="flex w-24 ml-4 hover:border-b-4 hover:border-b-[#3F3C51]">
+        <input class="cursor-pointer grow text-[#3F3C51] font-semibold" type="submit" value="Users"/>
+        <!--<div class="hover:bg-white flex-none h-2 w-full bg-[#3F3C51]"></div>-->
+      </form>
+    </div>
+    <div class="flex my-auto text-white">
+      <form class="border border-white mr-2 cursor-pointer rounded px-3 py-1 mr-2"  sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+        <input class="cursor-pointer" type="submit" value="logout"/>
+      </form>
+      <form class="border border-white cursor-pointer rounded px-3 py-1 mr-2" sec:authorize="!isAuthenticated()" method="get" th:action="@{/login}">
+        <input class="cursor-pointer" type="submit" value="login"/>
+      </form>
+      <form class="cursor-pointer border border-white rounded px-1 py-1" sec:authorize="!isAuthenticated()" method="get" th:action="@{/register}">
+        <input class="cursor-pointer" type="submit" value="register"/>
+      </form>
+    </div>
+  </div>
+  <section layout:fragment="content">
+
+  </section>
+</div>
+</body>
+</html>

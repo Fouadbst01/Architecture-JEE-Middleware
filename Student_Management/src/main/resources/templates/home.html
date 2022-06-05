@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white">
+    <section layout:fragment="content"class="w-full flex justify-between mx-12">
+        <div class="my-auto mx-auto">
+           <h1 class="text-4xl text-blue-500 font-bold text-center">Welcome TO <br/>Student Manager</h1>
+        </div>
+        <image class="w-2/4 h-2/4" th:src="@{/images/image.png}"/>
+    </section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  db:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: STD_DB
+      MYSQL_USER: fouad
+      MYSQL_PASSWORD: DeApTdfgf
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: 'db'
+      PMA_USER: 'root'
+      PMA_PASSWORD: 'root'
+    ports:
+      - 8090:80
+      - 3306:3306
+
+  wabapp:
+    build: ./
+    ports:
+      - 8083:8080
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/STD_DB?useSSL=false&useTimezone=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: fouad
+      SPRING_DATASOURCE_PASSWORD: DeApTdfgf
+      #SPRING_DATASOURCE_PLATFORM: org.hibernate.dialect.MariaDBDialect
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MariaDBDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
